@@ -94,8 +94,21 @@
     }
     
     // intentionally global so we can get at it in console:
-    testStar = new Star(ctx, 8, new Rectangle(100, 100, 200, 200), "#000000", "#000000");
+    var testStar = new Star(ctx, 8, new Rectangle(100, 100, 200, 200), "#000000", "#000000");
     
+    window.requestAnimationFrame = window.requestAnimationFrame||
+        window.webkitRequestAnimationFrame;
+    
+    function drawloop() {
+        
+        testStar.x += 1;
+        testStar.draw();
+        
+        requestAnimationFrame(drawloop)
+        
+    }
+    
+    requestAnimationFrame(drawloop);
     
     
     
